@@ -190,6 +190,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Controllers\SerieController.cs" />
+    <Compile Include="Models\SerieViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -269,6 +271,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Serie\Check.cshtml" />
+    <Content Include="Views\Serie\Create.cshtml" />
+    <Content Include="Views\Serie\Delete.cshtml" />
+    <Content Include="Views\Serie\Details.cshtml" />
+    <Content Include="Views\Serie\Edit.cshtml" />
+    <Content Include="Views\Serie\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
