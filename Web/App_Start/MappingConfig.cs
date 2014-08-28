@@ -9,7 +9,7 @@ namespace Web.App_Start
     {
         public static void Start()
         {
-           Mapper.CreateMap<Serie,Se>()
+            Mapper.CreateMap<Serie, SerieViewModel>();
         }
     }
 }
