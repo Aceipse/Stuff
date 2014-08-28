@@ -10,7 +10,7 @@ namespace Web.Models
     {
         public int SerieId { get; set; }
         public string Name { get; set; }
-        public int Afsnit { get; set; }
+        public int Episode { get; set; }
         public int Rating { get; set; }
         public StatusEnum Status { get; set; }
         public AirDayEnum Day { get; set; }

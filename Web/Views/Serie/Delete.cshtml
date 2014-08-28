@@ -5,3 +5,43 @@
 }
 
 <h2>Delete</h2>
+h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Serie</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Episode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Episode)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Season)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Season)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Rating)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Rating)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,8 +1,19 @@
-﻿@model dynamic
+﻿@model IEnumerable<Core.DomainModel.Serie>
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
-}
+    ViewBag.Title = "Checking";
+ }
 
-<h2>title</h2>
+<h2>There are new episodes of these series:</h2>
+    @if (Model.Count() == 0)
+    {
+        <div>Sadly there are no new episodes :(</div>
+    }
+    else
+    {
+        foreach (var serie in Model)
+        {
+            <div>@serie.Name</div>@Html.ActionLink("Episode seen","SeenOne",serie)
+        }
+        
+    }
