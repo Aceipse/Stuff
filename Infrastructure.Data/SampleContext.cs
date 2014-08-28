@@ -18,7 +18,7 @@ namespace Infrastructure.Data
         }
 
         public IDbSet<Test> Tests { get; set; }
-
+        public IDbSet<Serie> Series { get; set; } 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // use conventions when possible
