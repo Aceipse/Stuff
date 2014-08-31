@@ -17,8 +17,9 @@ namespace Infrastructure.Data
             Database.SetInitializer<SampleContext>(new SampleSeedInitializer());
         }
 
-        public IDbSet<Test> Tests { get; set; }
-        public IDbSet<Serie> Series { get; set; } 
+       public IDbSet<Serie> Series { get; set; }
+       public IDbSet<Test> Tests { get; set; }
+       public IDbSet<Manga> Mangas { get; set; } 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // use conventions when possible
