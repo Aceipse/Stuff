@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Serialization;
 using AutoMapper;
 using Core.DomainModel;
 using Core.DomainServices;
+using Microsoft.Ajax.Utilities;
 
 namespace Web.Models
 {
@@ -166,6 +169,39 @@ namespace Web.Models
             _unitOfWork.Save();
 
             return RedirectToAction("Check");
+        }
+
+        public ActionResult Import()
+        {
+            XmlSerializer mySerializer = new XmlSerializer(typeof(ObservableCollection<Serie>));
+            FileStream myStream = new FileStream("C:/Users/martin/Dropbox/Projects/SerieTracker/SerieTracker/bin/Debug/Series.txt", FileMode.Open, FileAccess.Read);
+
+            StreamReader myReader = new StreamReader(myStream);
+            ObservableCollection<Serie> savedSeries = new ObservableCollection<Serie>();
+
+            savedSeries = (ObservableCollection<Serie>)mySerializer.Deserialize(myReader);
+
+            var  series = _serieRepository.Get();
+            foreach (var serie in series)
+            {
+                savedSeries.Add(serie);
+            }
+            ObservableCollection<Serie> newtemp = new ObservableCollection<Serie>(savedSeries.DistinctBy(x => x.Name));
+            newtemp = new ObservableCollection<Serie>(newtemp.OrderBy(x => x.Name));
+
+            for (int j = 1; j <= series.Count(); j++)
+            {
+                _serieRepository.DeleteByKey(j);
+            }
+
+            for (int i = 1; i < newtemp.Count; i++)
+            {
+                _serieRepository.Insert(newtemp[i]);
+            }
+            myStream.Close();
+            _unitOfWork.Save();
+            
+            return RedirectToAction("Index");
         }
     }
 }

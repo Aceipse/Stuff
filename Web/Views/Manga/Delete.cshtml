@@ -1,4 +1,4 @@
-﻿@model Web.Models.SerieViewModel
+﻿@model Web.Models.MangaViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -7,7 +7,7 @@
 <h2>Delete</h2>
 <h3>Are you sure you want to delete this?</h3>
 <fieldset>
-    <legend>Serie</legend>
+    <legend>Manga</legend>
 
     <div class="display-label">
         @Html.DisplayNameFor(model => model.Name)
@@ -17,17 +17,10 @@
     </div>
 
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.Episode)
+        @Html.DisplayNameFor(model => model.Chapter)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Episode)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Season)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Season)
+        @Html.DisplayFor(model => model.Chapter)
     </div>
 
     <div class="display-label">
