@@ -12,7 +12,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Chapter)
@@ -24,7 +24,7 @@
                 @Html.DisplayNameFor(model => model.Rating)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NewChapter)
+                @Html.ActionLink("New Chapter", "Index", new { sortOrder = ViewBag.NewChaperSortParm })
             </th>
         </tr>
 

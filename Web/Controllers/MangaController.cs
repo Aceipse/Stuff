@@ -29,9 +29,26 @@ namespace Web.Controllers
 
         //
         // GET: /Manga/
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.NewChaperSortParm = sortOrder == "new_chapter" ? "new_chapter_desc" : "new_chapter";
             var manga = _mangaRepository.Get();
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    manga = manga.OrderByDescending(s => s.Name);
+                    break;
+                case "new_chapter":
+                    manga = manga.OrderBy(s => s.NewChapter);
+                    break;
+                case "new_chapter_desc":
+                    manga = manga.OrderByDescending(s => s.NewChapter);
+                    break;
+                default:
+                    manga = manga.OrderBy(s => s.Name);
+                    break;
+            }
             return View(manga);
         }
 
@@ -134,13 +151,12 @@ namespace Web.Controllers
             StreamReader reader = new StreamReader(response.GetResponseStream());
 
             string text = reader.ReadToEnd();
-            text = text.ToLower();
-
+           
             foreach (var manga in listofMangas)
             {
                 if (text.Contains(manga.Name + " "))
                 {
-                    int index = text.IndexOf(manga.Name + " ") + manga.Name.Count() + 1;
+                    int index = text.IndexOf(manga.Name + " ") + (manga.Name.Count() + 1);
                     int index2 = text.IndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }, index, 10);
                     if (index2 == -1)
                     {
@@ -155,6 +171,8 @@ namespace Web.Controllers
                         if (Convert.ToInt32(temp) > manga.Chapter)
                         {
                             manga.NewChapter = true;
+                            _mangaRepository.Update(manga);
+                            _unitOfWork.Save();
                         }
                     }
                     catch (Exception)
