@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.History;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,15 +15,16 @@ namespace Infrastructure.Data
         public SampleContext()
             : base("DefaultConnection")
         {
-            Database.SetInitializer<SampleContext>(new SampleSeedInitializer());
+            //Database.SetInitializer<SampleContext>(new SampleSeedInitializer());
         }
 
        public IDbSet<Serie> Series { get; set; }
        public IDbSet<Test> Tests { get; set; }
-       public IDbSet<Manga> Mangas { get; set; } 
+       public IDbSet<Manga> Mangas { get; set; }
+       public IDbSet<Lists> Listses { get; set; } 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // use conventions when possible
+          
         }
     }
 }

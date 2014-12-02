@@ -12,6 +12,7 @@ namespace Web.App_Start
         {
             Mapper.CreateMap<Serie, SerieViewModel>().ReverseMap();
             Mapper.CreateMap<Manga, MangaViewModel>().ReverseMap();
+            Mapper.CreateMap<Lists, ListsViewModel>().ReverseMap();
         }
     }
 }

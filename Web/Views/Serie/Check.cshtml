@@ -13,7 +13,7 @@
     {
         foreach (var serie in Model)
         {
-            <div>@serie.Name</div>@Html.ActionLink("Episode seen","SeenOne",serie)
+            <div>@serie.Name Season: @serie.Season Episode: @serie.Episode</div>@Html.ActionLink("Episode seen","SeenOne",serie)
         }
         
     }

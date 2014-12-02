@@ -1,57 +1,71 @@
 ﻿@model IEnumerable<Core.DomainModel.Manga>
 
-    @{
-        ViewBag.Title = "Mangas";
+@{
+    ViewBag.Title = "Mangas";
+}
+
+<h2>Mangas</h2>
+<div class="row">
+    <div class="pull-left add-padding">
+        @Html.ActionLink("Create New Manga", "Create", new { }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="pull-left add-padding">
+        @Html.ActionLink("Check for new chapters", "Check", new { }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="pull-left add-padding">
+        @if ((string)Session["FacebookId"] == "948395601842199")
+        {
+            @Html.ActionLink("Import from txt", "Import", new { }, new { @class = "btn btn-primary" })
+        }
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Chapter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+            @Html.ActionLink("New Chapter", "Index", new { sortOrder = ViewBag.NewChaperSortParm })
+        </th>
+        <th>
+            
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chapter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewChapter)
+            </td>
+            <td>
+                @Html.ActionLink("Add one", "AddOne", item, new { @class = "btn btn-success" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.MangaId }, new { @class = "btn btn-success" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.MangaId }, new { @class = "btn btn-success" })
+            </td>
+        </tr>
     }
 
-    <h2>Mangas</h2>
-    @Html.ActionLink("Create New Manga", "Create")
-    @Html.ActionLink("Check for new chapters", "Check")
-    @Html.ActionLink("Import from txt", "Import")
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Chapter)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.ActionLink("New Chapter", "Index", new { sortOrder = ViewBag.NewChaperSortParm })
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Chapter)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NewChapter)
-                </td>
-                <td>
-                    @Html.ActionLink("Add one", "AddOne", item)|
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MangaId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MangaId })
-                </td>
-            </tr>
-        }
-
-    </table>
+</table>

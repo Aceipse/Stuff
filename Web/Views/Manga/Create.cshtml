@@ -13,8 +13,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                <input type="text" name="Name" class="form-control" list="name" />
+                <p class="gray">* Required</p>
+                <datalist id="name">
+                    @foreach (var name in (List<string>)Session["NameManga"])
+                    {
+                        <option value="@name" />
+                    }
+                </datalist>
             </div>
         </div>
 
@@ -23,22 +29,31 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Chapter, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Chapter, "", new { @class = "text-danger" })
+                <p class="gray">* Required</p>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                <select name="Status" class="form-control">
+                    <option value="Airing">Airing</option>
+                    <option value="Completed">Completed</option>
+                    <option value="NA">NA</option>
+                </select>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Rating, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Rating)
-                @Html.ValidationMessageFor(model => model.Rating)
+                <select name="Rating" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

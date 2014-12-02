@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Facebook
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,7 +7,6 @@
     <title>@ViewBag.Title -Tracker</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,14 +20,42 @@
                 @Html.ActionLink("Trackers", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Serie Tracker", "Index", "Serie")</li>
-                    <li>@Html.ActionLink("Manga Tracker", "Index", "Manga")</li>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul class="nav navbar-nav col-lg-11">
+                    @if (Session["accessToken"] != null)
+                    {
+                        <li>@Html.ActionLink("Serie Tracker", "Index", "Serie")</li>
+                        <li>@Html.ActionLink("Manga Tracker", "Index", "Manga")</li>
+                    }
+                    @if (Session["accessToken"] != null)
+                    {
+                        var facebookId = Session["FacebookId"];
+
+                        var client = new FacebookClient(Session["accessToken"].ToString());
+
+                        dynamic result = client.Get("me", new { fields = "name, id, birthday" });
+
+                        <li class="pull-right">
+                            <div class="fb-info">
+
+                                <img class="pull-left" src="http://graph.facebook.com/@facebookId/picture?type=square" alt="FacebookBillede" />
+
+                                <p class="pull-left">
+                                    @result.name
+                                </p>
+                            </div>
+                        </li>
+                        <li class="pull-right">
+                            @Html.ActionLink("Log out", "Logout", "Login")
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="pull-right">
+                            @Html.ActionLink("Log in", "LogIn", "Login")
+                        </li>
+                    }
                 </ul>
-                @Html.Partial("_LoginPartial")
+
             </div>
         </div>
     </div>

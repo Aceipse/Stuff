@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -19,12 +20,15 @@ namespace Web.Controllers
     public class MangaController : Controller
     {
         private readonly IGenericRepository<Manga> _mangaRepository;
+        private readonly IGenericRepository<Lists> _listRepository; 
         private readonly IUnitOfWork _unitOfWork;
+        private Lists list;
 
-        public MangaController(IUnitOfWork unitOfWork, IGenericRepository<Manga> mangaRepository)
+        public MangaController(IUnitOfWork unitOfWork, IGenericRepository<Manga> mangaRepository, IGenericRepository<Lists> listRepository)
         {
             _unitOfWork = unitOfWork;
             _mangaRepository = mangaRepository;
+            _listRepository = listRepository;
         }
 
         //
@@ -33,23 +37,38 @@ namespace Web.Controllers
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.NewChaperSortParm = sortOrder == "new_chapter" ? "new_chapter_desc" : "new_chapter";
-            var manga = _mangaRepository.Get();
+
+            try
+            {
+                list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            }
+            catch (System.InvalidOperationException)
+            {
+
+                list = new Lists();
+                list.Owner = (string)Session["FacebookId"];
+                _listRepository.Insert(list);
+                _unitOfWork.Save();
+            }
+            ListsViewModel listVM = Mapper.Map<ListsViewModel>(list);
+
+            IOrderedEnumerable<Manga> mangas;
             switch (sortOrder)
             {
                 case "name_desc":
-                    manga = manga.OrderByDescending(s => s.Name);
+                    mangas = listVM.Mangas.OrderByDescending(s=>s.Name);
                     break;
                 case "new_chapter":
-                    manga = manga.OrderBy(s => s.NewChapter);
+                    mangas = listVM.Mangas.OrderBy(s => s.NewChapter);
                     break;
                 case "new_chapter_desc":
-                    manga = manga.OrderByDescending(s => s.NewChapter);
+                    mangas = listVM.Mangas.OrderByDescending(s => s.NewChapter);
                     break;
                 default:
-                    manga = manga.OrderBy(s => s.Name);
+                    mangas = listVM.Mangas.OrderBy(s => s.Name);
                     break;
             }
-            return View(manga);
+            return View(mangas);
         }
 
         //
@@ -76,7 +95,9 @@ namespace Web.Controllers
             try
             {
                 var manga = Mapper.Map<Manga>(mangaViewModel);
-                _mangaRepository.Insert(manga);
+                list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+                list.Mangas.Add(manga);
+                _listRepository.Update(list);
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
@@ -90,7 +111,8 @@ namespace Web.Controllers
         // GET: /Manga/Edit/5
         public ActionResult Edit(int id)
         {
-            var manga = _mangaRepository.GetByKey(id);
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            Manga manga = list.Mangas.Single(s => s.MangaId == id);
             var mangaViewModel = Mapper.Map<MangaViewModel>(manga);
             return View(mangaViewModel);
         }
@@ -102,8 +124,8 @@ namespace Web.Controllers
         {
             try
             {
-                var Manga = Mapper.Map<Manga>(mangaViewModel);
-                _mangaRepository.Update(Manga);
+                var manga = Mapper.Map<Manga>(mangaViewModel);
+                _mangaRepository.Update(manga);
                 _unitOfWork.Save();
 
                 return RedirectToAction("Index");
@@ -118,7 +140,8 @@ namespace Web.Controllers
         // GET: /Manga/Delete/5
         public ActionResult Delete(int id)
         {
-            var manga = _mangaRepository.GetByKey(id);
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            var manga = list.Mangas.Single(s => s.MangaId == id);
             var mangaViewModel = Mapper.Map<MangaViewModel>(manga);
             return View(mangaViewModel);
         }
@@ -130,7 +153,9 @@ namespace Web.Controllers
         {
             try
             {
-                _mangaRepository.DeleteByKey(id);
+                list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+                var tempmanga = list.Mangas.Single(s => s.MangaId == id);
+                _mangaRepository.DeleteByKey(tempmanga.MangaId);
                 _unitOfWork.Save();
 
                 return RedirectToAction("Index");
@@ -143,7 +168,8 @@ namespace Web.Controllers
 
         public ActionResult Check()
         {
-            var listofMangas = _mangaRepository.Get();
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            var listofMangas =list.Mangas;
             List<Manga> todaysshows = new List<Manga>();
 
             WebRequest request = WebRequest.Create("http://www.mangareader.net/");
@@ -188,16 +214,18 @@ namespace Web.Controllers
 
         public ActionResult AddOne(Manga manga)
         {
-            manga.Chapter++;
-            manga.NewChapter = false;
-            _mangaRepository.Update(manga);
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            list.Mangas.Single(s => s.MangaId == manga.MangaId).Chapter++;
+            list.Mangas.Single(s => s.MangaId == manga.MangaId).NewChapter = false;
+            _mangaRepository.Update(list.Mangas.Single(s => s.MangaId == manga.MangaId));
             _unitOfWork.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { sortOrder = "new_chapter_desc" });
         }
 
         public ActionResult Import()
         {
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
             XmlSerializer mySerializer = new XmlSerializer(typeof(ObservableCollection<Manga>));
             FileStream myStream = new FileStream("C:/Users/martin/Dropbox/Projects/MangaTracker/MangaTracker/bin/Debug/Mangas.txt", FileMode.Open, FileAccess.Read);
 
@@ -206,7 +234,7 @@ namespace Web.Controllers
 
             savedMangas = (ObservableCollection<Manga>)mySerializer.Deserialize(myReader);
 
-            var mangas = _mangaRepository.Get();
+            var mangas = list.Mangas;
             foreach (var manga in mangas)
             {
                 savedMangas.Add(manga);
@@ -214,16 +242,17 @@ namespace Web.Controllers
             ObservableCollection<Manga> newtemp = new ObservableCollection<Manga>(savedMangas.DistinctBy(x => x.Name));
             newtemp = new ObservableCollection<Manga>(newtemp.OrderBy(x => x.Name));
 
-            for (int j = 1; j <= mangas.Count(); j++)
+            while (mangas.Count != 0)
             {
-                _mangaRepository.DeleteByKey(j);
+                _mangaRepository.DeleteByKey(mangas.First().MangaId);
             }
 
             for (int i = 1; i < newtemp.Count; i++)
             {
-                _mangaRepository.Insert(newtemp[i]);
+                list.Mangas.Add(newtemp[i]);
             }
             myStream.Close();
+            _listRepository.Update(list);
             _unitOfWork.Save();
 
             return RedirectToAction("Index");

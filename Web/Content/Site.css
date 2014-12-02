@@ -22,3 +22,23 @@ select,
 textarea {
     max-width: 280px;
 }
+.fb-info {
+    color: white;
+}
+.fb-info p {
+    margin: 3px;
+}
+.fb-info img {
+    margin: 3px;
+
+}
+.add-padding {
+    padding: 0 0 10px 15px; 
+}
+.btn-primary {
+    background-color: black;
+    border-color: black;
+}
+.gray {
+    color: gainsboro;
+}

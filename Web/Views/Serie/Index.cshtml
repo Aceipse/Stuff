@@ -5,9 +5,21 @@
 }
 
 <h2>Series</h2>
-@Html.ActionLink("Create New Serie", "Create")
-@Html.ActionLink("Check for new episodes", "Check")
-@Html.ActionLink("Import from txt", "Import")
+<div class="row">
+    <div class="pull-left add-padding">
+        @Html.ActionLink("Create New Serie", "Create", new { }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="pull-left add-padding">
+        @Html.ActionLink("Check for new episodes", "Check", new { }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="pull-left add-padding">
+        @if ((string)Session["FacebookId"] == "948395601842199")
+        {
+            @Html.ActionLink("Import from txt", "Import", new { }, new { @class = "btn btn-primary" })
+
+        }
+    </div>
+</div>
 
 <table class="table">
     <tr>
@@ -31,6 +43,8 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
         </th>
     </tr>
 
@@ -59,8 +73,8 @@
                 @Html.DisplayFor(modelItem => item.Time)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SerieId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SerieId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.SerieId }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.SerieId }, new { @class = "btn btn-success" })
             </td>
         </tr>
     }

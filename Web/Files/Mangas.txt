@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfManga xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Manga>
+    <Name>A Fairytale for the Demon Lord</Name>
+    <Chapter>42</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Abide in the Wind</Name>
+    <Chapter>29</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Absolute Duo</Name>
+    <Chapter>9</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>ale of Fairy Ice Trail - Koori no Kiseki</Name>
+    <Chapter>3</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Billionaire Girl</Name>
+    <Chapter>17</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Biorg Trinity</Name>
+    <Chapter>9</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Black Haze</Name>
+    <Chapter>70</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Black Joke</Name>
+    <Chapter>33</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Black Yome ni Yoroshiku! </Name>
+    <Chapter>8</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Bleach</Name>
+    <Chapter>597</Chapter>
+    <Status>Airing</Status>
+    <Rating>4</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Blood and Steel</Name>
+    <Chapter>55</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Blood Lad</Name>
+    <Chapter>38</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Break Blade</Name>
+    <Chapter>71</Chapter>
+    <Status>Airing</Status>
+    <Rating>2</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Buster Keel</Name>
+    <Chapter>27</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Cerberus</Name>
+    <Chapter>82</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>true</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Chaos Attack</Name>
+    <Chapter>13</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>true</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>City of Dead Sorcerer</Name>
+    <Chapter>90</Chapter>
+    <Status>Airing</Status>
+    <Rating>3</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Clockwork Planet</Name>
+    <Chapter>9</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Dark Air</Name>
+    <Chapter>55</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Dragons Rioting</Name>
+    <Chapter>17</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Fairy Tail</Name>
+    <Chapter>401</Chapter>
+    <Status>Airing</Status>
+    <Rating>5</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Fairy Tail Zero</Name>
+    <Chapter>3</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Feng Shen Ji</Name>
+    <Chapter>124</Chapter>
+    <Status>Airing</Status>
+    <Rating>5</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Freezing</Name>
+    <Chapter>168</Chapter>
+    <Status>Airing</Status>
+    <Rating>3</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Gangsta</Name>
+    <Chapter>30</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Honorable Baek Dong Soo</Name>
+    <Chapter>28</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Horimiya</Name>
+    <Chapter>40</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Illegal Rare </Name>
+    <Chapter>8</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Imawa No Kuni No Alice</Name>
+    <Chapter>12</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Iron Knight</Name>
+    <Chapter>11</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Kamisama no Inai Nichiyoubi</Name>
+    <Chapter>28</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Kiwaguro no Brynhildr</Name>
+    <Chapter>116</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Knight Run</Name>
+    <Chapter>83</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Kuroshitsuji</Name>
+    <Chapter>97</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Lessa the Crimson Knight</Name>
+    <Chapter>28</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Magi</Name>
+    <Chapter>239</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Maken-ki</Name>
+    <Chapter>12</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>true</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Maoyuu Maou Yuusha</Name>
+    <Chapter>13</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Masamune-kun no Revenge</Name>
+    <Chapter>17</Chapter>
+    <Status>Airing</Status>
+    <Rating>3</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Mercenary Maruhan</Name>
+    <Chapter>34</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Metallica Metalluca</Name>
+    <Chapter>17</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Mokushiroku Alice</Name>
+    <Chapter>2</Chapter>
+    <Status>Airing</Status>
+    <Rating>4</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Nanatsu no Taizai</Name>
+    <Chapter>93</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Naqua-den</Name>
+    <Chapter>13</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Naruto</Name>
+    <Chapter>692</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Number</Name>
+    <Chapter>15</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>true</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Occult Maiden - Light Chronicle - The Boy Who Prevails Over Demons</Name>
+    <Chapter>8</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>One Piece</Name>
+    <Chapter>761</Chapter>
+    <Status>Airing</Status>
+    <Rating>5</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Onepunch-Man</Name>
+    <Chapter>53</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Otogi Taisen Fantasma</Name>
+    <Chapter>9</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Over Steam</Name>
+    <Chapter>60</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Owari no Seraph</Name>
+    <Chapter>17</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Rappa (SASAKURA Kou)</Name>
+    <Chapter>11</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Red Storm</Name>
+    <Chapter>20</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Second Brain</Name>
+    <Chapter>7</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Sengoku Youko</Name>
+    <Chapter>62</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Shingeki no Kyojin</Name>
+    <Chapter>61</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Shinigami-sama to 4-nin no Kanojo</Name>
+    <Chapter>15</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Sidooh</Name>
+    <Chapter>133</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Soul Cartel</Name>
+    <Chapter>141</Chapter>
+    <Status>Airing</Status>
+    <Rating>4</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Sousei no Onmyouji</Name>
+    <Chapter>8</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Sousouki Reginald</Name>
+    <Chapter>9</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Special Martial Arts Extreme Hell Private High School</Name>
+    <Chapter>37</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Terra Formars</Name>
+    <Chapter>85</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Tsuyokute New Saga</Name>
+    <Chapter>8</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Witch Craft Works</Name>
+    <Chapter>37</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Witch Hunter</Name>
+    <Chapter>111</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Wizardy Zeo</Name>
+    <Chapter>9</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>World Trigger</Name>
+    <Chapter>3</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>true</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Yongbi</Name>
+    <Chapter>95</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+  <Manga>
+    <Name>Zerozaki Soushiki no Ningen Shiken </Name>
+    <Chapter>6</Chapter>
+    <Status>Airing</Status>
+    <Rating>0</Rating>
+    <NewChapter>false</NewChapter>
+  </Manga>
+</ArrayOfManga>

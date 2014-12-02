@@ -16,20 +16,37 @@ namespace Web.Models
 {
     public class SerieController : Controller
     {
+        private readonly IGenericRepository<Lists> _listRepository;
         private readonly IGenericRepository<Serie> _serieRepository;
         private readonly IUnitOfWork _unitOfWork;
-
-        public SerieController(IGenericRepository<Serie> serieRepository, IUnitOfWork unitOfWork)
+        private Lists list;
+        
+        public SerieController(IUnitOfWork unitOfWork, IGenericRepository<Lists> listRepository, IGenericRepository<Serie> serieRepository, List<string> namelist)
         {
-            _serieRepository = serieRepository;
             _unitOfWork = unitOfWork;
+            _listRepository = listRepository;
+            _serieRepository = serieRepository;
         }
 
         // GET: Serie
         public ActionResult Index()
         {
-            var serie = _serieRepository.Get();
-            return View(serie);
+            try
+            {
+                list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            }
+            catch (System.InvalidOperationException)
+            {
+
+                list = new Lists();
+                list.Owner = (string)Session["FacebookId"];
+                _listRepository.Insert(list);
+                _unitOfWork.Save();
+            }
+
+
+            ListsViewModel listVM = Mapper.Map<ListsViewModel>(list);
+            return View(listVM.Series.OrderBy(s=>s.Name));
         }
 
         // GET: Serie/Details/5
@@ -43,6 +60,8 @@ namespace Web.Models
         {
             var serie = new Serie();
             var serieViewModel = Mapper.Map<SerieViewModel>(serie);
+
+
             return View(serieViewModel);
         }
 
@@ -53,7 +72,9 @@ namespace Web.Models
             try
             {
                 var serie = Mapper.Map<Serie>(serieViewModel);
-                _serieRepository.Insert(serie);
+                list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+                list.Series.Add(serie);
+                _listRepository.Update(list);
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
@@ -66,7 +87,8 @@ namespace Web.Models
         // GET: Serie/Edit/5
         public ActionResult Edit(int id)
         {
-            var serie = _serieRepository.GetByKey(id);
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            Serie serie = list.Series.Single(s => s.SerieId == id);
             var serieViewModel = Mapper.Map<SerieViewModel>(serie);
             return View(serieViewModel);
         }
@@ -77,6 +99,7 @@ namespace Web.Models
         {
             try
             {
+                list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
                 var serie = Mapper.Map<Serie>(serieViewModel);
                 _serieRepository.Update(serie);
                 _unitOfWork.Save();
@@ -92,7 +115,8 @@ namespace Web.Models
         // GET: Serie/Delete/5
         public ActionResult Delete(int id)
         {
-            var serie = _serieRepository.GetByKey(id);
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            var serie = list.Series.Single(s => s.SerieId == id);
             var serieViewModel = Mapper.Map<SerieViewModel>(serie);
             return View(serieViewModel);
         }
@@ -103,7 +127,9 @@ namespace Web.Models
         {
             try
             {
-                _serieRepository.DeleteByKey(id);
+                list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+                var tempserie = list.Series.Single(s => s.SerieId == id);
+                _serieRepository.DeleteByKey(tempserie.SerieId);
                 _unitOfWork.Save();
 
                 return RedirectToAction("Index");
@@ -116,7 +142,8 @@ namespace Web.Models
 
         public ActionResult Check()
         {
-            var listofSeries = _serieRepository.Get();
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            var listofSeries = list.Series;
             List<Serie> todaysshows = new List<Serie>();
 
             WebRequest request = WebRequest.Create("http://www.free-tv-video-online.me/internet/index_last_7_days.html");
@@ -125,7 +152,7 @@ namespace Web.Models
 
             string text = reader.ReadToEnd();
             text = text.ToLower();
-            
+
             foreach (var serie in listofSeries)
             {
                 if ((text.Contains(serie.Name.ToLower() + " - season " + serie.Season + " episode ")))
@@ -144,16 +171,40 @@ namespace Web.Models
                     {
                         if (Convert.ToInt32(temp) > serie.Episode)
                         {
-                            todaysshows.Add(serie);
+                            Serie newEp = new Serie();
+                            newEp = serie;
+                            newEp.Episode = Convert.ToInt32(temp);
+                            todaysshows.Add(newEp);
                         }
                     }
                     catch (Exception)
                     {
                     }
                 }
-                else if (text.Contains(serie.Name.ToLower() + " - season " + (serie.Season + 1) + " episode 1"))
+                else if (text.Contains(serie.Name.ToLower() + " - season " + (serie.Season + 1) + " episode "))
                 {
-                    todaysshows.Add(serie);
+                    int index = text.IndexOf(serie.Name.ToLower() + " - season " + (serie.Season + 1) + " episode ") + serie.Name.Count() + serie.Season.ToString().Count() + 19;
+                    int index2 = text.IndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }, index, 10);
+                    if (index2 == -1)
+                    {
+                        index2 = index;
+                    }
+                    string temp = text.Substring(index2, 3);
+                    temp = temp.Replace("<", "");
+                    temp = temp.Replace("\"", "");
+                    temp = temp.Replace("/", "");
+                    try
+                    {
+                        Serie newEp = new Serie();
+                        newEp = serie;
+                        newEp.Episode = Convert.ToInt32(temp);
+                        newEp.Season = (serie.Season + 1);
+                        todaysshows.Add(newEp);
+
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
 
             }
@@ -164,8 +215,10 @@ namespace Web.Models
 
         public ActionResult SeenOne(Serie serie)
         {
-            serie.Episode++;
-            _serieRepository.Update(serie);
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
+            list.Series.Single(s => s.SerieId == serie.SerieId).Episode = serie.Episode;
+            list.Series.Single(s => s.SerieId == serie.SerieId).Season = serie.Season;
+            _listRepository.Update(list);
             _unitOfWork.Save();
 
             return RedirectToAction("Check");
@@ -173,6 +226,7 @@ namespace Web.Models
 
         public ActionResult Import()
         {
+            list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
             XmlSerializer mySerializer = new XmlSerializer(typeof(ObservableCollection<Serie>));
             FileStream myStream = new FileStream("C:/Users/martin/Dropbox/Projects/SerieTracker/SerieTracker/bin/Debug/Series.txt", FileMode.Open, FileAccess.Read);
 
@@ -181,7 +235,7 @@ namespace Web.Models
 
             savedSeries = (ObservableCollection<Serie>)mySerializer.Deserialize(myReader);
 
-            var  series = _serieRepository.Get();
+            var series = list.Series;
             foreach (var serie in series)
             {
                 savedSeries.Add(serie);
@@ -189,18 +243,19 @@ namespace Web.Models
             ObservableCollection<Serie> newtemp = new ObservableCollection<Serie>(savedSeries.DistinctBy(x => x.Name));
             newtemp = new ObservableCollection<Serie>(newtemp.OrderBy(x => x.Name));
 
-            for (int j = 1; j <= series.Count(); j++)
+            while (series.Count != 0)
             {
-                _serieRepository.DeleteByKey(j);
+                _serieRepository.DeleteByKey(series.First().SerieId);
             }
 
-            for (int i = 1; i < newtemp.Count; i++)
+            for (int i = 0; i < newtemp.Count; i++)
             {
-                _serieRepository.Insert(newtemp[i]);
+                list.Series.Add(newtemp[i]);
             }
             myStream.Close();
+            _listRepository.Update(list);
             _unitOfWork.Save();
-            
+
             return RedirectToAction("Index");
         }
     }
