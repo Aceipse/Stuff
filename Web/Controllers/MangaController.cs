@@ -35,6 +35,11 @@ namespace Web.Controllers
         // GET: /Manga/
         public ActionResult Index(string sortOrder)
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.NewChaperSortParm = sortOrder == "new_chapter" ? "new_chapter_desc" : "new_chapter";
 
@@ -75,6 +80,10 @@ namespace Web.Controllers
         // GET: /Manga/Details/5
         public ActionResult Details(int id)
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             return View();
         }
 
@@ -82,6 +91,10 @@ namespace Web.Controllers
         // GET: /Manga/Create
         public ActionResult Create()
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var manga = new Manga();
             var mangaViewModel = Mapper.Map<MangaViewModel>(manga);
             return View(mangaViewModel);
@@ -111,6 +124,10 @@ namespace Web.Controllers
         // GET: /Manga/Edit/5
         public ActionResult Edit(int id)
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
             Manga manga = list.Mangas.Single(s => s.MangaId == id);
             var mangaViewModel = Mapper.Map<MangaViewModel>(manga);
@@ -168,6 +185,10 @@ namespace Web.Controllers
 
         public ActionResult Check()
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
             var listofMangas =list.Mangas;
             List<Manga> todaysshows = new List<Manga>();

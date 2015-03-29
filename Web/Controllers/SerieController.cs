@@ -31,6 +31,10 @@ namespace Web.Models
         // GET: Serie
         public ActionResult Index()
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             try
             {
                 list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
@@ -58,6 +62,10 @@ namespace Web.Models
         // GET: Serie/Create
         public ActionResult Create()
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var serie = new Serie();
             var serieViewModel = Mapper.Map<SerieViewModel>(serie);
 
@@ -87,6 +95,10 @@ namespace Web.Models
         // GET: Serie/Edit/5
         public ActionResult Edit(int id)
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
             Serie serie = list.Series.Single(s => s.SerieId == id);
             var serieViewModel = Mapper.Map<SerieViewModel>(serie);
@@ -115,6 +127,10 @@ namespace Web.Models
         // GET: Serie/Delete/5
         public ActionResult Delete(int id)
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
             var serie = list.Series.Single(s => s.SerieId == id);
             var serieViewModel = Mapper.Map<SerieViewModel>(serie);
@@ -142,6 +158,10 @@ namespace Web.Models
 
         public ActionResult Check()
         {
+            if ((string)Session["FacebookId"] == null || (string)Session["FacebookId"] == "")
+            {
+                return RedirectToAction("Login", "Login");
+            }
             list = _listRepository.Get().Single(s => s.Owner == (string)Session["FacebookId"]);
             var listofSeries = list.Series;
             List<Serie> todaysshows = new List<Serie>();
